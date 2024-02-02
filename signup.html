@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+
+<body>
+
+    <form id="signupForm" class="signup">
+        <h2>Sign Up</h2>
+        <label for="newUsername">Username:</label>
+        <input type="text" id="newUsername" name="newUsername" required>
+
+        <label for="newPassword">Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+
+        <button type="button" onclick="app.createAccount()">Sign Up</button>
+    </form>
+
+    <script>
+        var app = new Vue({
+            el: '#signupForm',
+            methods: {
+                createAccount() {
+                    var newUsername = document.getElementById("newUsername").value;
+                    var newPassword = document.getElementById("newPassword").value;
+
+                    // Check if the username is already taken
+                    var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+                    if (existingUsers.some(user => user.username === newUsername)) {
+                        alert("Username is already taken. Please choose another.");
+                        return;
+                    }
+
+                    // Store the new user information
+                    existingUsers.push({ username: newUsername, password: newPassword });
+                    localStorage.setItem("users", JSON.stringify(existingUsers));
+
+                    // Set authentication status to true
+                    localStorage.setItem("authenticated", "true");
+
+                    // Redirect to the main page
+                    window.location.href = "login.html";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

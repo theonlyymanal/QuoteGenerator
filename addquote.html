@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Quote</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <form id="addQuoteForm" @submit.prevent="submitNewQuote" class="addquote">
+        <h2>Add a new Quote</h2>
+        <div>
+            <label>Quote :</label>
+            <input id="newQuoteContent" required>
+        </div>
+        <div>
+            <label for="newQuoteAuthor">Author :</label>
+            <input type="text" id="newQuoteAuthor" required>
+        </div>
+        <div>
+            <button type="submit">Add Quote</button> <!-- Removed onclick attribute -->
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+    <script>
+        var app = new Vue({
+            el: '#addQuoteForm',
+            methods: {
+                submitNewQuote() {
+                    var newQuote = document.getElementById("newQuoteContent").value;
+                    var newAuthor = document.getElementById("newQuoteAuthor").value;
+
+                    if (window.opener && window.opener.profileApp && window.opener.profileApp.submitNewQuote) {
+                        window.opener.profileApp.submitNewQuote(newQuote, newAuthor);
+                        window.close();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

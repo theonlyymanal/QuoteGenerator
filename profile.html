@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const HomeComponent = { template: '<div>Home Component</div>' };
+        const AboutComponent = { template: '<div>About Component</div>' };
+     
+        const router = new VueRouter({
+          routes: [
+            { path: '/', component: HomeComponent },
+            { path: '/about', component: AboutComponent },
+            { path: '/contact', component: AboutComponent },
+            
+          ],
+        });
+        </script>
+</head>
+<body>
+    <div class="nav-menu">
+        <i class="fas fa-bars" @click="showMenu"></i>
+        <div class="nav-content" :class="showMobileMenu ? 'open-menu' : 'closed-menu'">
+            <div class="logo"><img src="logo_daily.png"></div>
+            <ul class="nav-items">
+                <li><button class="btn" @click="goHome">Home</button></li>
+                <li><button class="btn" @click="login">Connexion</button></li>
+                <li><button class="btn" @click="goToProfile">Profile</button></li>
+                <li><button class="btn" @click="scrollToBottom">About</button></li>
+                <li><button class="btn" @click="scrollToBottom">Contact</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="global">
+    <div class="profile-container">
+        <div class="profile-header">
+          <img src="profile-picture.png" alt="Profile Picture" class="profile-pic">
+          <div class="user-info">
+            <h1 class="username">Salma Rachid</h1>
+            <ul class="stats">
+              <li><strong>0</strong> posts</li>
+              <li><strong>700k</strong> followers</li>
+              <li><strong>500</strong> following</li>
+            </ul>
+            <p class="bio">Artiste Maroccaine !</p>
+          </div>
+          <button class="butn">Modify Profile</button>
+          <button class="butn">Delete Profile</button>
+        </div>
+        <div class="global2">
+        <div class="navigation-bar">
+            <a href="#posts" class="nav-item active">POSTS</a>
+            <a href="#likedquotes" class="nav-item">Liked Quotes</a>
+        </div>
+        <div class="quotes-section">
+            <ul>
+                <li v-for="quote in userQuotes">{{ quote.content }} - {{ quote.author }}</li>
+            </ul>
+        </div>
+        <div id="likedquotes" class="liked-quotes-container" v-if="showLikedQuotes">
+            <ul>
+                <li v-for="likedQuote in likedQuotes" :key="likedQuote.content">
+                    "{{ likedQuote.content }}" - {{ likedQuote.author }}
+                </li>
+            </ul>
+        </div>
+    </div>
+ </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+var profileApp = new Vue({
+    el: '.global',
+    data: {
+        likedQuotes: JSON.parse(localStorage.getItem('likedQuotes')) || [],
+        showLikedQuotes: true,
+        userQuotes: [], // Add an array to store user's quotes
+    },
+    methods: {
+        goHome() {
+            // Use Vue Router to navigate to the home route
+            this.$router.push('/');
+        },
+        login() {
+            // Use Vue Router to navigate to the login route
+            this.$router.push('/login'); // Update with the actual login route
+        },
+        goToProfile() {
+            // Use Vue Router to navigate to the profile route
+            this.$router.push('/profile');
+        },
+        scrollToBottom() {
+            const bottomElement = document.getElementById('info');
+            if (bottomElement) {
+                bottomElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            } else {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        },
+        submitNewQuote(newQuote, newAuthor) {
+            // Push the new quote to the userQuotes array
+            this.userQuotes.push({
+                content: newQuote,
+                author: newAuthor,
+            });
+        },
+    },
+    })
+    </script>
+</body>
+</html>

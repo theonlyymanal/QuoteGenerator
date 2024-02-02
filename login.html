@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <form id="loginForm" class="login">
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" @click="authenticate">Login</button>
+        <button type="button" @click="goToSignUp">Sign Up</button>
+    </form>
+
+<script>
+    var app = new Vue({
+      el: '#loginForm', // Updated to match the correct element ID
+      methods: {
+        authenticate() {
+                console.log("Attempting to authenticate...");
+                var usernameInput = document.getElementById("username").value;
+                var passwordInput = document.getElementById("password").value;
+
+                console.log("Input Username:", usernameInput);
+                console.log("Input Password:", passwordInput);
+
+                var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+                console.log("Existing Users:", existingUsers);
+
+                var matchedUser = existingUsers.find(user => user.username === usernameInput && user.password === passwordInput);
+                console.log("Matched User:", matchedUser);
+
+                if (matchedUser) {
+                    alert("Login successful!");
+                    localStorage.setItem("authenticated", "true");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Invalid username or password. Please try again.");
+                }
+                },
+                goToSignUp() {
+                window.location.href = "signup.html";
+                }
+      }
+    });
+  </script>
+</body>
+</html>

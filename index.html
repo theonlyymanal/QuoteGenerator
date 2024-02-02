@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Quote of the day</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-lwMOn/z5tP8qmU9FZdLl5uK2U6OG4BdmQ/ZqMmuFZ0fWCG3GIcBYlwoM7a2Y1UTJ" crossorigin="anonymous">
+   <script>
+    const HomeComponent = { template: '<div>Home Component</div>' };
+    const AboutComponent = { template: '<div>About Component</div>' };
+ 
+    const router = new VueRouter({
+      routes: [
+        { path: '/', component: HomeComponent },
+        { path: '/about', component: AboutComponent },
+        { path: '/contact', component: AboutComponent },
+        
+      ],
+    });
+    </script>
+</head>
+<body>
+    <div id="app">
+        <div class="nav-menu">
+            <i class="fas fa-bars" @click="showMenu"></i>
+            <div class="nav-content" :class="showMobileMenu ? 'open-menu' : 'closed-menu'">
+                <div class="logo"><img src="logo_daily.png"></div>
+                <div class="nav-items">
+                    <li><button class="btn">Home</router-link></li>
+                    <li><button class="btn" @click="login">Connexion</li>
+                    <li><button class="btn" @click="profile">Profile</li>
+                    <li><button class="btn" @click="scrollToBottom">About</li>
+                    <li><button class="btn" @click="scrollToBottom">Contact</li>
+                </div>
+            </div>
+        </div>
+
+    <div id="app" class="quote-box">
+        <h2>Quote of the day <img :src="liked ? 'heart2.png' : 'heart.png'" @click="toggleLike" class="heart-icon" /></h2>
+        <blockquote>{{ quote }}</blockquote>
+        <span>{{ author }}</span>
+        <div>
+          <button @click="getNewQuote">New Quote</button>
+          <button @click="openAddQuoteForm">Add a New Quote</button>
+          <button @click="tweet"><img src="tweet.png">Tweet</button>
+        </div>
+      </div>
+
+      <div id="info" class="info-section">
+        <div class="abt">
+        <h3>About us</h3>
+        <p>This peoject was made by two students.<br>
+            We used HTML, CSS, JAVASCRIPT and Vue in order to create this website.<br>
+            It's still under developpement.
+        </p>
+    </div>
+    <div class="cntct">
+        <h3>Contact us</h3>
+        <p>project.contact@gmail.com<br>
+           Contact us from : Instagram, Tweeter, FaceBook<br>
+           Phone Number :+212612345678.
+        </p>
+    </div>
+    </div>
+
+   <script>
+    const api_url = "https://api.quotable.io/random";
+    var app = new Vue({
+        el: '#app',
+        router,
+        data: {
+            quote: 'loading...',
+            author: 'Loading...',
+            showMobileMenu: false,
+            liked: false,
+            likedQuotes: [],
+            showLikedQuotes: false,
+        },
+        methods: {
+            async getNewQuote() {
+                try {
+                    const response = await fetch(api_url);
+                    if (!response.ok) throw new Error('Error fetching quote');
+                    const data = await response.json();
+                    this.quote = data.content;
+                    this.author = data.author;
+                } catch (error) {
+                    console.error('There was an error fetching a new quote: ', error);
+                }
+            },
+            openAddQuoteForm() {
+                var addQuoteWindow = window.open("addquote.html", "Add Quote", "width=610, height=500");
+                addQuoteWindow.focus();
+            },
+            toggleLike() {
+            this.liked = !this.liked;
+            if (this.liked) {
+            
+                if (!this.likedQuotes.some(quote => quote.content === this.quote)) {
+                this.likedQuotes.push({ content: this.quote, author: this.author });
+                }
+            } else {
+            
+                this.likedQuotes = this.likedQuotes.filter(quote => quote.content !== this.quote);
+            }
+
+            localStorage.setItem('likedQuotes', JSON.stringify(this.likedQuotes));
+            },
+            toggleLikedQuotesDisplay() {
+            this.showLikedQuotes = !this.showLikedQuotes;
+            },
+            tweet() {
+                window.open("https://twitter.com/intent/tweet?text=" + this.quote, "Tweet Window", "width=600, height=300");
+            },
+            showMenu() {
+                this.showMobileMenu = !this.showMobileMenu;
+            },
+            scrollToBottom() {
+                const bottomElement = document.getElementById('info');
+                if (bottomElement) {
+                         bottomElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    } else {
+                            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                    }
+            },
+            login(){
+                window.location.href = "login.html";
+            },
+            profile(){
+                window.location.href = "profile.html";
+            },
+            likedqt(){
+                window.location.href = "likedquote.html";
+            }
+            },
+            mounted() {
+                if (localStorage.getItem('likedQuotes')) {
+                this.likedQuotes = JSON.parse(localStorage.getItem('likedQuotes'));
+            }
+                this.getNewQuote();
+  },
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background: #bbc6fa;
+}
+.quote-box{
+    background: #fff;
+    width: 700px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 10px 20px 0px rgba(0,0,0,0.15);
+
+}
+.quote-box h2{
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+.quote-box h2::after{
+    content:'';
+    width: 75px;
+    height: 3px;
+    border-radius: 3px;
+    background: rgb(23, 124, 229);
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.quote-box blockquote{
+    font-size: 26px;
+    min-height: 110px;
+}
+.quote-box blockquote::before, .quote-box blockquote::after{
+    content:'"';
+}
+.quote-box span{
+    display: block;
+    margin-top: 10px;
+    float: right;
+    position: relative;
+}
+.quote-box span::before{
+    content:'';
+    width: 20px;
+    height: 2px;
+    background: rgb(23, 124, 229);
+    position: absolute;
+    top: 50%;
+    left: -30px;
+}
+.quote-box div{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.quote-box button{
+    background: rgb(23, 124, 229);
+    color: #fff;
+    border-radius: 25px;
+    border: 1px solid rgb(23, 124, 229);
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+}
+.quote-box button img{
+    width: 15px;
+    margin-right:  10px;
+}
+.quote-box button:nth-child(3){
+    background: transparent;
+    color: #333;
+}
+.addquote{
+    background: #fff;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 10px 20px 0px rgba(0,0,0,0.15);
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.addquote h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.addquote div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addquote button {
+    background: rgb(23, 124, 229);
+    color: #fff;
+    border-radius: 25px;
+    border: 1px solid rgb(23, 124, 229);
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+}
+.addquote input{
+    width: 60%;
+    height: 40px;
+    margin-bottom: 10px; 
+    padding: 8px;
+}
+.addquote label{
+    margin-right: 8px;
+}
+.login {
+    background: #fff;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 10px 20px 0px rgba(0,0,0,0.15);
+    font-family: 'Montserrat', sans-serif;
+}
+.login h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login button {
+    background: rgb(23, 124, 229);
+    color: #fff;
+    border-radius: 25px;
+    border: 1px solid rgb(23, 124, 229);
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+}
+.login input{
+    width: 60%;
+    height: 40px;
+    margin-bottom: 10px; 
+    padding: 8px;
+}
+.login label{
+    margin-right: 8px;
+}
+.signup{
+    background: #fff;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 10px 20px 0px rgba(0,0,0,0.15);
+    font-family: 'Montserrat', sans-serif;
+}
+.signup h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.signup div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup button {
+    background: rgb(23, 124, 229);
+    color: #fff;
+    border-radius: 25px;
+    border: 1px solid rgb(23, 124, 229);
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+}
+.signup input{
+    width: 60%;
+    height: 40px;
+    margin-bottom: 10px; 
+    padding: 8px;
+}
+.signup label{
+    margin-right: 8px;
+}
+.nav-menu {
+    background-color: #333;
+    }
+    .nav-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    }
+    .nav-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+    padding: 0 10px;
+    }
+    }
+    i {
+    display: none;
+    }
+    @media screen and (max-width: 768px) {
+    .nav-menu {
+    padding-top: 10px;
+    position: absolute;
+    width: 100%;
+    }
+    .open-menu {
+    opacity: 1;
+    height: 150px;
+    }
+    .closed-menu {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    }
+    .nav-content {
+    flex-direction: column;
+    z-index: 100;
+    position: relative;
+    transition: all 0.2s ease-out;
+    }
+    .nav-items {
+    flex-direction: column;
+    }
+    i {
+    display: block;
+    text-align: center;
+    padding: 0 10px 10px 0;
+    }
+}
+.logo img{
+    width: 50px;
+    height: 50px;
+}
+
+.info-section{
+    background: #fff;
+    width: 1500px;
+    position: absolute;
+    top: 130%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 10px 20px 0px rgba(0,0,0,0.15);
+}
+
+.abt{
+    float: left;
+}
+
+.cntct{
+    float: right;
+}
+
+.btn{
+    background: #333;
+    color: #fff;
+    border-radius: 25px;
+    border: 1px solid #333;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.heart-icon {
+    float: right;
+    cursor: pointer; 
+    width: 30px; 
+    height: auto; 
+    transition: transform 0.2s ease; 
+  }
+  
+  .heart-icon:hover {
+    transform: scale(1.1); 
+  }
+
+  .profile-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        background-color: #fff;
+        padding-bottom: 0;
+  }
+  
+  .profile-header {
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 80px;
+    margin-left: 170px;
+    background-color: #fff;
+  }
+  
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 2px solid #333;
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .username {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .stats {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 8px 0;
+  }
+  
+  .stats li {
+    margin-right: 20px;
+  }
+  
+  .stats strong {
+    font-weight: bold;
+  }
+  
+  .bio {
+    margin: 0;
+  }
+
+  .navigation-bar {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 0px solid #dbdbdb;
+    background-color: rgb(23, 124, 229);
+    margin-bottom: 0px;
+  }
+  
+  .nav-item {
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .nav-item.active {
+    border-top: 1px solid #262626;
+  }
+  
+  .nav-item:hover {
+    border-top: 1px solid #262626;
+  }
+
+  .global{
+    background: #fff;
+    width: 1200px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 10px 20px 0px rgba(0,0,0,0.15);
+  }
+
+  .butn{
+    background: rgb(23, 124, 229);
+    color: #fff;
+    border-radius: 25px;
+    border: 1px solid rgb(23, 124, 229);
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    cursor: pointer;
+  }
+  .liked-quotes-container{
+    margin-top: 10px;
+  }
+
+  .global2{
+        margin-bottom: 20PX;
+  }
